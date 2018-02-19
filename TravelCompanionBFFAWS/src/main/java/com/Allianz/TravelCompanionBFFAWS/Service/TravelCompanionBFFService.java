@@ -41,11 +41,8 @@ public class TravelCompanionBFFService {
 	private MakeServiceCalls makeServiceCalls;
 
 	@Autowired
-	ProductInfoVO productInfoVO;
+	private ProductInfoVO productInfoVO;
 
-	@Autowired
-	PackageinfoVO packageinfoVO;
-	
 	private static final String OUTERLAYERBASEURL = "https://groupreferenceplatform-dev.allianz.de";
 	private static final String FILEINSURANCEURL = "/fileMobilityInsurance";
 	private static final String FETCHPRODUCTURL = "/Product/";
