@@ -15,7 +15,7 @@
  ******************************************************************************/
 package com.Allianz.TravelCompanionBFFAWS.Model;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -34,10 +34,10 @@ public class PackageinfoVO {
 		this.packageName = packageName;
 	}
 	public List<String> getPackageDescription() {
-		return packageDescription;
+		return new ArrayList<>(packageDescription);
 	}
 	public void setPackageDescription(List<String> packageDescription) {
-		this.packageDescription = packageDescription;
+		this.packageDescription = new ArrayList<>(packageDescription);
 	}
 
 	
@@ -48,7 +48,7 @@ public class PackageinfoVO {
 	public PackageinfoVO(String packageName,List<String> packageDescription)
 	{
 		this.packageName= packageName;
-		this.packageDescription=packageDescription;
+		this.packageDescription=new ArrayList<>(packageDescription);
 		
 	}
 	

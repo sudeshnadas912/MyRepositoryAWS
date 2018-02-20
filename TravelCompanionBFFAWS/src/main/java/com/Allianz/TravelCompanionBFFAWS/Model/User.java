@@ -15,6 +15,7 @@
  ******************************************************************************/
 package com.Allianz.TravelCompanionBFFAWS.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -190,13 +191,13 @@ public class User {
 	
 
 	public List<String> getSelectedModule() {
-		return selectedModule;
+		return new ArrayList<>(selectedModule);
 	}
 
 
 
 	public void setSelectedModule(List<String> selectedModule) {
-		this.selectedModule = selectedModule;
+		this.selectedModule = new ArrayList<>(selectedModule);
 	}
 
 
