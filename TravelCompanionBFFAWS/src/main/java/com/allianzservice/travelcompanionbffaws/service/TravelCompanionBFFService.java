@@ -13,27 +13,26 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package com.Allianz.TravelCompanionBFFAWS.Service;
+package com.allianzservice.travelcompanionbffaws.service;
 
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 
-import com.Allianz.TravelCompanionBFFAWS.Model.PackageinfoVO;
-import com.Allianz.TravelCompanionBFFAWS.Model.ProductInfoVO;
-import com.Allianz.TravelCompanionBFFAWS.Model.User;
-import com.Allianz.TravelCompanionBFFAWS.util.MakeServiceCalls;
-import com.google.gson.JsonSyntaxException;
+import com.allianzservice.travelcompanionbffaws.model.ProductInfoVO;
+import com.allianzservice.travelcompanionbffaws.model.User;
+import com.allianzservice.travelcompanionbffaws.util.MakeServiceCalls;
 
 @Service
-public class TravelCompanionBFFService {
+public class TravelCompanionBFFService 
+{
 
 	
 
@@ -47,46 +46,54 @@ public class TravelCompanionBFFService {
 	private static final String FILEINSURANCEURL = "/fileMobilityInsurance";
 	private static final String FETCHPRODUCTURL = "/Product/";
 	private static final String FETCHQUOTEURL = "/getTheQuote";
+	private static final Logger LOGGER = Logger.getLogger(TravelCompanionBFFService.class.getName());
 
 	public TravelCompanionBFFService() {
 		// Do Nothing
 	}
 
 	// To get the Product structure from APL
-	public ProductInfoVO getProductInfo(String productName) throws JsonSyntaxException, JSONException {
-
-		// Set the product name for the ProductVO
+	public ProductInfoVO getProductInfo(String productName) 
+	{	// Set the product name for the ProductVO
 		Client client = ClientBuilder.newClient();
 		String url = OUTERLAYERBASEURL + FETCHPRODUCTURL + productName;
-		Response response = makeServiceCalls.makeGetCall(client.target(url));
-		productInfoVO = response.readEntity(ProductInfoVO.class);
+		try {
+			Response response = makeServiceCalls.makeGetCall(client.target(url));
+			productInfoVO = response.readEntity(ProductInfoVO.class);
+		} catch (Exception e) {
+			LOGGER.info(e);
+		}
 
 		return productInfoVO;
 	}
 
 	// To make fetch the contract details and file a policy for that contract
-	public boolean fileMobilityInsurance(User user) throws JSONException {
-
-		boolean status = true;
+	public boolean fileMobilityInsurance(User user) 
+	{	boolean status = true;
 		String urlToBePassed = OUTERLAYERBASEURL + FILEINSURANCEURL;
-		JSONObject jsonObject = new JSONObject(makeServiceCalls
-				.makeHttpRestCall(makeServiceCalls.convertObjectToJSON(user), urlToBePassed, HttpMethod.POST));
-		status = jsonObject.getBoolean("status");
+		try {
+			JSONObject jsonObject = new JSONObject(makeServiceCalls
+					.makeHttpRestCall(makeServiceCalls.convertObjectToJSON(user), urlToBePassed, HttpMethod.POST));
+			status = jsonObject.getBoolean("status");
+		} catch (JSONException e) {
+			LOGGER.info(e);
+		}
 
 		return status;
 	}
 
 	// To get the quote from the inner Layer
-	public String getTheQuote(User user) throws JSONException {
-
-		String response = "";
+	public String getTheQuote(User user) 
+	{	String response = "";
 		String urlToBePassed = OUTERLAYERBASEURL + FETCHQUOTEURL;
-		response = makeServiceCalls.makeHttpRestCall(makeServiceCalls.convertObjectToJSON(user), urlToBePassed,
-				HttpMethod.POST);
-
-		JSONObject jsonObject = new JSONObject(response);
-		response = jsonObject.toString();
-
+		try {
+			response = makeServiceCalls.makeHttpRestCall(makeServiceCalls.convertObjectToJSON(user), urlToBePassed,
+					HttpMethod.POST);
+			JSONObject jsonObject = new JSONObject(response);
+			response = jsonObject.toString();
+		} catch (JSONException e) {
+			LOGGER.info(e);
+		}
 		return response;
 	}
 

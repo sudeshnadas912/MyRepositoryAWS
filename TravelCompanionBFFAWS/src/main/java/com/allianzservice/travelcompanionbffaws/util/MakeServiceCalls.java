@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package com.Allianz.TravelCompanionBFFAWS.util;
+package com.allianzservice.travelcompanionbffaws.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,26 +39,27 @@ import com.google.gson.GsonBuilder;
 public class MakeServiceCalls {
 
 	private static final Logger LOGGER = Logger.getLogger(MakeServiceCalls.class.getName());
+	public static final int SUCCESSFUL_RESPONSE_CODE = 200;
 
-	public Response makeGetCall(WebTarget webTarget) {
-		LOGGER.info("urlGet-->" + webTarget.getUri());
+	public Response makeGetCall(WebTarget webTarget)
+	{	LOGGER.info("urlGet-->" + webTarget.getUri());
 		Builder request = null;
 
 		Response response = null;
-		try {
-			request = webTarget.request();
+		try
+		{	request = webTarget.request();
 			request.accept(MediaType.APPLICATION_JSON);
 			response = request.get();
 
 			LOGGER.info("respoonse-->" + response.toString() + "status code-->" + response.getStatus());
-		} catch (Exception e) {
-			LOGGER.info(e.getMessage());
+		} catch (Exception e) 
+		{LOGGER.info(e);
 		}
 		return response;
 	}
 
-	public String makeHttpRestCall(JSONObject jsonObject, String urlToBePassed, String httpMethod) {
-		String response = "";
+	public String makeHttpRestCall(JSONObject jsonObject, String urlToBePassed, String httpMethod) 
+	{	String response = "";
 		LOGGER.info("URL " + httpMethod + "-->" + urlToBePassed);
 		try {
 			URL url = new URL(urlToBePassed);
@@ -79,10 +80,10 @@ public class MakeServiceCalls {
 
 			BufferedReader br = null;
 
-			if (conn.getResponseCode() == 200) {
-				br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			} else {
-				br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+			if (conn.getResponseCode() == SUCCESSFUL_RESPONSE_CODE) 
+			{ br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			} else
+			{ br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
 			}
 
 			StringBuilder sb = new StringBuilder();
@@ -93,20 +94,20 @@ public class MakeServiceCalls {
 			br.close();
 			LOGGER.info("json-->" + sb.toString());
 			response = sb.toString();
-		} catch (IOException e) {
-			response = e.getMessage();
-			LOGGER.info(e.getMessage());
-		} catch (Exception ex) {
-			response = ex.getMessage();
-			LOGGER.info("error Message " + ex.getMessage());
+		} catch (IOException e) 
+		{	response = e.getMessage();
+			LOGGER.info(e);
+		} catch (Exception ex)
+		{	response = ex.getMessage();
+			LOGGER.info("error Message " + ex);
 		}
 
 		return response;
 
 	}
 
-	public JSONObject convertObjectToJSON(Object obj) throws JSONException {
-		Gson gson = new GsonBuilder().create();
+	public JSONObject convertObjectToJSON(Object obj) throws JSONException 
+	{	Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(obj);
 		return new JSONObject(json);
 	}

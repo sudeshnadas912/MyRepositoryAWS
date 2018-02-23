@@ -13,14 +13,14 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package com.Allianz.TravelCompanionBFFAWS.Model;
+package com.allianzservice.travelcompanionbffaws.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User 
+{
 
-	
 	private long userId;
 	private String userName;
 	private String selectedPackage;
@@ -35,185 +35,149 @@ public class User {
 	private float distance;
 	private int duration;
 	private int numberOfPerson;
-	
-	
-	public int getNumberOfPerson() {
+
+	public User() {
+		// Do Nothing
+	}
+
+	public int getNumberOfPerson() 
+	{
 		return numberOfPerson;
 	}
 
-
-
-	public void setNumberOfPerson(int numberOfPerson) {
+	public void setNumberOfPerson(int numberOfPerson) 
+	{
 		this.numberOfPerson = numberOfPerson;
 	}
 
-
-
-	public int getPressure() {
+	public int getPressure() 
+	{
 		return pressure;
 	}
 
-
-
-	public void setPressure(int pressure) {
+	public void setPressure(int pressure) 
+	{
 		this.pressure = pressure;
 	}
 
-
-
-	public float getDistance() {
+	public float getDistance() 
+	{
 		return distance;
 	}
 
-
-
-	public void setDistance(float distance) {
+	public void setDistance(float distance) 
+	{
 		this.distance = distance;
 	}
 
-
-
-	public int getDuration() {
+	public int getDuration() 
+	{
 		return duration;
 	}
 
-
-
-	public void setDuration(int duration) {
+	public void setDuration(int duration) 
+	{
 		this.duration = duration;
 	}
 
-
-
-	public long getUserId() {
+	public long getUserId() 
+	{
 		return userId;
 	}
 
-
-
-	public void setUserId(long userId) {
+	public void setUserId(long userId) 
+	{
 		this.userId = userId;
 	}
 
-
-
-	public void setUserName(String userName) {
+	public void setUserName(String userName) 
+	{
 		this.userName = userName;
 	}
 
-	
-	
-	
-	public String getTravelEndDate() {
+	public String getTravelEndDate() 
+	{
 		return travelEndDate;
 	}
 
-
-
-	public void setTravelEndDate(String travelEndDate) {
+	public void setTravelEndDate(String travelEndDate) 
+	{
 		this.travelEndDate = travelEndDate;
 	}
 
-
-
-	public String getWeather() {
+	public String getWeather() 
+	{
 		return weather;
 	}
 
-
-
-	public void setWeather(String weather) {
+	public void setWeather(String weather) 
+	{
 		this.weather = weather;
 	}
 
-
-
-
-
-
-
-	
-
-
-
-	public String getPlace() {
+	public String getPlace() 
+	{
 		return place;
 	}
 
-
-
-	public void setPlace(String place) {
+	public void setPlace(String place) 
+	{
 		this.place = place;
 	}
 
-
-
-	public String getTravelDate() {
+	public String getTravelDate() 
+	{
 		return travelDate;
 	}
 
-
-
-	public void setTravelDate(String travelDate) {
+	public void setTravelDate(String travelDate) 
+	{
 		this.travelDate = travelDate;
 	}
 
-
-
-	public String getFiledDate() {
+	public String getFiledDate() 
+	{
 		return filedDate;
 	}
 
-
-
-	public void setFiledDate(String filedDate) {
+	public void setFiledDate(String filedDate) 
+	{
 		this.filedDate = filedDate;
 	}
 
-
-
-	public String getPackageTitle() {
+	public String getPackageTitle() 
+	{
 		return packageTitle;
 	}
 
-
-
-	public void setPackageTitle(String packageTitle) {
+	public void setPackageTitle(String packageTitle) 
+	{
 		this.packageTitle = packageTitle;
 	}
 
-
-
-	public String getUserName() {
+	public String getUserName() 
+	{
 		return userName;
 	}
 
-	
-
-	public List<String> getSelectedModule() {
+	public List<String> getSelectedModule() 
+	{
 		return new ArrayList<>(selectedModule);
 	}
 
-
-
-	public void setSelectedModule(List<String> selectedModule) {
+	public void setSelectedModule(List<String> selectedModule) 
+	{
 		this.selectedModule = new ArrayList<>(selectedModule);
 	}
 
-
-
-	public String getSelectedPackage() {
+	public String getSelectedPackage() 
+	{
 		return selectedPackage;
 	}
 
-	public void setSelectedPackage(String selectedPackage) {
+	public void setSelectedPackage(String selectedPackage) 
+	{
 		this.selectedPackage = selectedPackage;
 	}
 
-
-	
-	public User()
-	{
-		//Do Nothing
-	}
 }

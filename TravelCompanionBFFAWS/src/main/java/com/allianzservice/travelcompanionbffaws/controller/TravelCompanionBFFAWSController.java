@@ -13,9 +13,9 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package com.Allianz.TravelCompanionBFFAWS.Controller;
+package com.allianzservice.travelcompanionbffaws.controller;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.apache.log4j.Logger;
 import org.json.JSONException;
@@ -26,9 +26,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Allianz.TravelCompanionBFFAWS.Model.User;
-import com.Allianz.TravelCompanionBFFAWS.Service.TravelCompanionBFFService;
-import com.Allianz.TravelCompanionBFFAWS.util.MakeServiceCalls;
+import com.allianzservice.travelcompanionbffaws.model.User;
+import com.allianzservice.travelcompanionbffaws.service.TravelCompanionBFFService;
+import com.allianzservice.travelcompanionbffaws.util.MakeServiceCalls;
 import com.google.gson.JsonSyntaxException;
 
 import io.swagger.annotations.Api;
@@ -45,24 +45,31 @@ public class TravelCompanionBFFAWSController {
 	private MakeServiceCalls makeServiceCalls;
 
 	private static final Logger LOGGER = Logger.getLogger(TravelCompanionBFFAWSController.class.getName());
+	
+	
+
+	public TravelCompanionBFFAWSController(TravelCompanionBFFService productService,
+			MakeServiceCalls makeServiceCalls) 
+	{
+		this.productService = productService;
+		this.makeServiceCalls = makeServiceCalls;
+	}
 
 	// To get the product info from inner layer
 	@ApiOperation("To get Product and components from APL Service")
 	@GetMapping("/Product/{productName}")
-	public String getProductInfo(@PathVariable String productName) {
-		String response = "";
+	public String getProductInfo(@PathVariable String productName)
+	{	String response = "";
 		LOGGER.debug("in get Product Info call");
 
+		 
 		try {
 			response = makeServiceCalls.convertObjectToJSON(productService.getProductInfo(productName)).toString();
-		} catch (JsonSyntaxException e) {
-			LOGGER.info(e.getMessage());
-			response = e.getMessage() + " AWS layer";
 		} catch (JSONException e) {
-			LOGGER.info(e.getMessage());
+			LOGGER.info(e);
 			response = e.getMessage() + " AWS layer";
 		}
-
+	
 		return response;
 
 	}
@@ -70,12 +77,12 @@ public class TravelCompanionBFFAWSController {
 	// create an policy in CISL from Inner Layer
 	@ApiOperation("To file the insurance policy")
 	@PostMapping(value = "/fileMobilityInsurance")
-	public boolean fileMobilityInsurance(@RequestBody User user) {
-		user.setFiledDate(new Date().toString());
-		try {
-			return productService.fileMobilityInsurance(user);
-		} catch (Exception ex) {
-			LOGGER.info(ex.getMessage());
+	public boolean fileMobilityInsurance(@RequestBody User user) 
+	{	user.setFiledDate(LocalDate.now().toString());
+		try 
+		{ return productService.fileMobilityInsurance(user);
+		} catch (Exception ex) 
+		{	LOGGER.info(ex);
 			return false;
 		}
 	}
@@ -83,12 +90,12 @@ public class TravelCompanionBFFAWSController {
 	// To get the quote by sending the configuration
 	@ApiOperation("To file the insurance policy")
 	@PostMapping(value = "/getTheQuote")
-	public String getTheQuote(@RequestBody User user) {
-		user.setFiledDate(new Date().toString());
-		try {
-			return productService.getTheQuote(user);
-		} catch (Exception ex) {
-			LOGGER.info(ex.getMessage());
+	public String getTheQuote(@RequestBody User user) 
+	{	user.setFiledDate(LocalDate.now().toString());
+		try 
+		{return productService.getTheQuote(user);
+		} catch (Exception ex) 
+		{	LOGGER.info(ex);
 			return "error Ocuured while getting quote from inner layer";
 		}
 	}

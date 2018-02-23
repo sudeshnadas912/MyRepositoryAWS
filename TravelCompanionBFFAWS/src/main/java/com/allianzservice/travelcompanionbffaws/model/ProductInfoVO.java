@@ -13,43 +13,42 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package com.Allianz.TravelCompanionBFFAWS.Model;
+package com.allianzservice.travelcompanionbffaws.model;
 
-import java.util.ArrayList;
+import static java.util.stream.Collectors.toList;
+
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class PackageinfoVO {
+public class ProductInfoVO 
+{
 
 	
-	private String packageName;
-	private List<String> packageDescription;
-
-	public String getPackageName() {
-		return packageName;
+	private String productName;
+	private List<PackageinfoVO> packageList;
+	public ProductInfoVO()
+	{
+		//Do nothing
 	}
-	public void setPackageName(String packageName) {
-		this.packageName = packageName;
+	public String getProductName() 
+	{
+		return productName;
 	}
-	public List<String> getPackageDescription() {
-		return new ArrayList<>(packageDescription);
+	public void setProductName(String productName) 
+	{
+		this.productName = productName;
 	}
-	public void setPackageDescription(List<String> packageDescription) {
-		this.packageDescription = new ArrayList<>(packageDescription);
+	public List<PackageinfoVO> getPackageList() 
+	{
+		return packageList.stream().collect(toList());
 	}
-
+	public void setPackageList(List<PackageinfoVO> packageList) 
+	{
+		this.packageList = packageList.stream().collect(toList());
+	}
 	
-	public PackageinfoVO()
-	{
-		//Do Nothing
-	}
-	public PackageinfoVO(String packageName,List<String> packageDescription)
-	{
-		this.packageName= packageName;
-		this.packageDescription=new ArrayList<>(packageDescription);
-		
-	}
+	
 	
 }

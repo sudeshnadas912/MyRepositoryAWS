@@ -1,7 +1,7 @@
 /** Copyright CodeJava.net To Present
 all right reserved.
 */
-package com.Allianz.TravelCompanionBFFAWS.Service;
+package com.allianzservice.travelcompanionbffaws.service;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -18,10 +18,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.Allianz.TravelCompanionBFFAWS.Model.PackageinfoVO;
-import com.Allianz.TravelCompanionBFFAWS.Model.ProductInfoVO;
-import com.Allianz.TravelCompanionBFFAWS.Model.User;
-import com.Allianz.TravelCompanionBFFAWS.util.MakeServiceCalls;
+import com.allianzservice.travelcompanionbffaws.model.PackageinfoVO;
+import com.allianzservice.travelcompanionbffaws.model.ProductInfoVO;
+import com.allianzservice.travelcompanionbffaws.model.User;
+import com.allianzservice.travelcompanionbffaws.service.TravelCompanionBFFService;
+import com.allianzservice.travelcompanionbffaws.util.MakeServiceCalls;
 
 @RunWith(SpringRunner.class)
 public class TravelCompanionBFFServiceTest {

@@ -1,12 +1,13 @@
 /** Copyright CodeJava.net To Present
 all right reserved.
 */
-package com.Allianz.TravelCompanionBFFAWS.util;
+package com.allianzservice.travelcompanionbffaws.util;
 
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URI;
 
 import javax.ws.rs.client.Invocation.Builder;
@@ -22,11 +23,16 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Matchers;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import com.Allianz.TravelCompanionBFFAWS.Model.User;
+import com.allianzservice.travelcompanionbffaws.model.User;
 
 public class MakeServiceCallsTest {
+	
+	 @Mock
+	    HttpURLConnection mockHttpConnection;
+	 
 
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();

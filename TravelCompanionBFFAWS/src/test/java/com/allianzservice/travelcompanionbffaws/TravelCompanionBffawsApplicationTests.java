@@ -1,4 +1,4 @@
-package com.Allianz.TravelCompanionBFFAWS;
+package com.allianzservice.travelcompanionbffaws;
 
 import static org.junit.Assert.assertNotNull;
 
